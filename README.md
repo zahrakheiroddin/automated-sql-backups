@@ -1,13 +1,24 @@
 # Current Time in Greenwich, London, UK
 
-<div id="clock" style="font-family: 'Courier New', Courier, monospace; font-size: 24px; color: #333; border: 2px solid #333; padding: 10px; width: 150px; text-align: center;">
+<div id="clock" style="
+    font-family: 'Arial', sans-serif; 
+    font-size: 32px; 
+    color: #4CAF50; 
+    border: 2px solid #4CAF50; 
+    border-radius: 8px; 
+    padding: 15px; 
+    width: 200px; 
+    text-align: center; 
+    background-color: #f0f0f0;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    margin: 20px auto;
+">
     <span id="time"></span>
 </div>
 
 <script>
     function updateClock() {
         const now = new Date();
-        // Convert to GMT/UTC+0 (Greenwich Mean Time)
         const options = {
             timeZone: 'Europe/London',
             hour: '2-digit',
@@ -19,10 +30,6 @@
         document.getElementById('time').textContent = timeString;
     }
 
-    // Update the clock every second
     setInterval(updateClock, 1000);
-
-    // Initialize the clock on page load
     updateClock();
 </script>
-****
