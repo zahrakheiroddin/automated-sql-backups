@@ -1,72 +1,28 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Digital Clock</title>
-    <style>
-        @import url('https://fonts.googleapis.com/css?family=Orbitron');
+# Current Time in Greenwich, London, UK
 
-        .clock-body {
-            margin: 200px auto;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
+<div id="clock" style="font-family: 'Courier New', Courier, monospace; font-size: 24px; color: #333; border: 2px solid #333; padding: 10px; width: 150px; text-align: center;">
+    <span id="time"></span>
+</div>
 
-        .inner-body {
-            width: 30%;
-            height: 200px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            border: 5px solid #2BC511;
-            background-color: black;
-            border-radius: 12px;
-        }
+<script>
+    function updateClock() {
+        const now = new Date();
+        // Convert to GMT/UTC+0 (Greenwich Mean Time)
+        const options = {
+            timeZone: 'Europe/London',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+            hour12: false
+        };
+        const timeString = new Intl.DateTimeFormat('en-GB', options).format(now);
+        document.getElementById('time').textContent = timeString;
+    }
 
-        .clock {
-            font-size: 4em;
-            font-weight: 700;
-            text-align: center;
-            color: #2BC511;
-            font-family: 'Orbitron', sans-serif;
-        }
+    // Update the clock every second
+    setInterval(updateClock, 1000);
 
-        .clock span {
-            padding: 20px;
-        }
-    </style>
-</head>
-<body>
-    <div class="clock-body">
-        <div class="inner-body">
-            <div class="clock"></div>
-        </div>
-    </div>
-
-    <script>
-        function tick() {
-            const now = new Date();
-            const h = now.getHours();
-            const m = now.getMinutes();
-            const s = now.getSeconds();
-            
-            // Format time with leading zeros
-            const formattedTime = `
-            <span>${h < 10 ? "0" + h : h}</span>:
-            <span>${m < 10 ? "0" + m : m}</span>:
-            <span>${s < 10 ? "0" + s : s}</span>`;
-            
-            // Update the clock display
-            const clock = document.querySelector('.clock');
-            clock.innerHTML = formattedTime;
-        }
-
-        // Update the clock every second
-        setInterval(tick, 1000);
-    </script>
-</body>
-</html>
+    // Initialize the clock on page load
+    updateClock();
+</script>
+****
